@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Canteen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CanteenController extends Controller
 {
@@ -18,12 +20,27 @@ class CanteenController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * @param  array $data
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * 
+     * @return \App\Canteen
+     */
+    public function add(Request $request)
     {
-        //
+        if(isset($request)){
+       $data=$request->all();
+       DB::table('canteens')->insert([
+          ['name'=>$data['name']],
+           ['adress'=>$data['adress']],
+           ['city'=>$data['city']],
+           ['post_code'=>$data['post_code']]
+       ]);
+        }
+        return view('home');
     }
 
     /**
