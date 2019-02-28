@@ -22,3 +22,7 @@ Route::get('/add', function(){
     return view('add');
 });
 Route::post('/addcanteen','CanteenController@add')->name('add');
+Route::get('/show','CanteenController@show')->name('canteens');
+Route::get('/canteens', function (){
+return view('show')->name('show');
+});
