@@ -59,15 +59,14 @@ DB::insert('insert into canteens (name,adress,city,post_code) values (?,?,?,?)',
      */
     public function show()
     {
-        $canteen=DB::select('Select * from users');
-        foreach ($canteen as $canteens){
-        $data['name']=$canteens->name;
-        //$data['adress']=$canteens->adress;
-        $data['city']=$canteens->city;
-        $data['post_code']=$canteens->post_code;
+        $num=0;
+        $canteen=DB::select('Select * from canteens');
+        foreach ($canteen as $canteens){        
+          $data[$num]=$canteens;
+          $num++;
         }
         if(isset($data)){
-        return view('show',['canteen'=>$canteen]);
+        return view('show',['data'=>$data]);
         }
     }
 
