@@ -26,3 +26,4 @@ Route::get('/show','CanteenController@show')->name('canteens');
 Route::get('/canteens', function (){
 return view('show')->name('show');
 });
+Route::get('/get-ctn/{id}','CanteenController@showSimpleCanteen');

@@ -34,8 +34,15 @@ class CanteenController extends Controller
         if(isset($request)){
        $data=$request->all();
        var_dump($data['adress']);
-DB::insert('insert into canteens (name,adress,city,post_code) values (?,?,?,?)',
-        [$data['name'],$data['adress'],$data['city'],$data['post_code']]);
+//       DB::insert('insert into canteens (name,adress,city,post_code) values (?,?,?,?)',
+//        [$data['name'],$data['adress'],$data['city'],$data['post_code']]);
+        $canteen = new \App\Canteen();
+        $canteen->name = $data['name'];
+        $canteen->adress = $data['adress'];
+        $canteen->city = $data['city'];
+        $canteen->post_code = $data['post_code'];
+        $canteen->save();
+       
         }
         return view('home');
     }
@@ -102,5 +109,11 @@ DB::insert('insert into canteens (name,adress,city,post_code) values (?,?,?,?)',
     public function destroy($id)
     {
         //
+    }
+    
+    public function showSimpleCanteen(Request $request, $id){
+//        $id=$request->fromRoute('id');
+        $canteent = Canteen::find($id);
+        return response()->json($canteent);
     }
 }

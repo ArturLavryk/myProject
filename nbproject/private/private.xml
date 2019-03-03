@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/myProject/routes/web.php</file>
-            <file>file:/C:/xampp/htdocs/myProject/config/database.php</file>
-            <file>file:/C:/xampp/htdocs/myProject/public/index.php</file>
-            <file>file:/C:/xampp/htdocs/myProject/app/User.php</file>
-            <file>file:/C:/xampp/htdocs/myProject/resources/views/welcome.blade.php</file>
+            <file>file:/C:/xampp/htdocs/myProject/public/js/app.js</file>
+            <file>file:/C:/xampp/htdocs/myProject/app/Http/Controllers/CanteenController.php</file>
+            <file>file:/C:/xampp/htdocs/myProject/app/Http/Controllers/Auth/RegisterController.php</file>
+            <file>file:/C:/xampp/htdocs/myProject/resources/views/show.blade.php</file>
+            <file>file:/C:/xampp/htdocs/myProject/resources/views/layouts/app.blade.php</file>
+            <file>file:/C:/xampp/htdocs/myProject/database/migrations/2019_03_01_114243_create_meals_table.php</file>
         </group>
     </open-files>
 </project-private>
