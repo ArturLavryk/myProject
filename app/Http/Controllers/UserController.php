@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -54,9 +57,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        if(Auth::id()){
+            $id= Auth::id();
+            $user=User::where('id',$id)->first();
+//            var_dump($user->email);
+            return view('edit',['user'=>$user]);
+        } else {
+        return redirect('login');    
+        }
     }
 
     /**
@@ -66,9 +76,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+       $id= Auth::id();
+       $data=$request->all();
+       $user=User::find($id);
+       $user->name=$data['name'];
+       $user->email=$data['email'];
+       if(isset($request['new_password']) && isset($request['password']) ){
+           if(Hash::check($request['password'],$user->password)){
+          $user->password=Hash::make($request['new_password']); 
+           }else{
+               echo 'Pidor wwedy prawylnyj parol';
+           }
+       }
+       $user->save();
+       return view('home');
     }
 
     /**

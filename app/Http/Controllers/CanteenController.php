@@ -116,4 +116,5 @@ class CanteenController extends Controller
         $canteent = Canteen::find($id);
         return response()->json($canteent);
     }
+    
 }
