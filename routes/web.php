@@ -21,12 +21,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/add', function(){
     return view('add');
 });
-Route::post('/addcanteen','CanteenController@add')->name('add');
+Route::post('/addcanteen','CanteenController@add')->name('addcanteen');
+//Route::post('/addcanteen', 'CanteenController@add')->name('addcanteen');
 Route::get('/show','CanteenController@show')->name('canteens');
 Route::get('/canteens', function (){
 return view('show')->name('show');
 });
-Route::get('/get-ctn/{id}','CanteenController@showSimpleCanteen');
+//Route::get('/get-ctn/{id}','CanteenController@showSimpleCanteen');
+Route::get('/getcanteen/{id}','CanteenController@getCanteen');
 
 Route::get('/editUser', 'UserController@edit')->name('editUser');
 Route::post('/update','UserController@update')->name('update');

@@ -19,18 +19,20 @@
                             <th scope="col">{{ __('Adress') }}</th>
                             <th scope="col">{{ __('City') }}</th>
                             <th scope="col">{{ __('Post code') }}</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
 
                         @foreach($data as $canteens)
 
-                        <tr>
+                        <tr class=" pointer"  >
                             <th scope="row"></th>
-                            <td>{{ $canteens->name}}</td>
+                            <td class=""  >{{ $canteens->name}}</td>
                             <td>{{ $canteens->adress}}</td>
                             <td>{{ $canteens->city}}</td>
-                            <td class="pcode pointer" pcode="{{ $canteens->post_code}}" ctn="{{ $canteens->id}}">{{ $canteens->post_code}}</td>
+                            <td>{{ $canteens->post_code}}</td>
+                            <td><button class="btn btn-dark pcode" my_id="{{$canteens->id}}">Edit</button></td>
                         </tr>
 
                         @endforeach
@@ -55,31 +57,64 @@
 //            });
 //        });
 $(document).ready(function () {
-    $('.pcode').click(function () {
-        id = $(this).attr('ctn');
-        console.log(id);
+//    $('.pcode').click(function () {
+//        id = $(this).attr('ctn');
+//    console.log(id);
+//
+//        $.ajax({
+//            url: "get-ctn/" + id,
+//            success: function (data) {
+//         
+//                Swal.fire({
+//                    title: '<strong>Canteen click</strong>',
+//                    type: 'info',
+//                    html:'<p>' +data.name+ '</p>'
+//                    +'<p>' +data.adress + '</p>'
+//                    +'<p>' +data.post_code+ '</p>',
+//                                                    
+//                    showCloseButton: true,
+//                    showCancelButton: false,
+//                    showConfirmButton: false,
+//                    focusConfirm: false
+//                    
+//                })
+//            }
+//
+//        });
+//    });
+    
+    $('.pcode').click(function(){
+    id=$(this).attr('my_id');
+console.log(id);
 
-        $.ajax({
-            url: "get-ctn/" + id,
-            success: function (data) {
-                Swal.fire({
-                    title: '<strong>Canteen click</strong>',
-                    type: 'info',
-                    html:'<p>' +data.name+ '</p>'
-                    +'<p>' +data.adress + '</p>'
-                    +'<p>' +data.post_code+ '</p>',
-                                                    
+$.ajax({ 
+    url: "getcanteen/" + id,
+    
+    saccess: function (data) {
+        console.log(data.name);
+        Swal.fire({
+        title:'<strong>Canteen edit</strong>',
+        type:'info',
+        html:'<p>' +data.id+ '</p>',
+//                    +'<p>' +data.adress + '</p>'
+//                    +'<p>' +data.post_code+ '</p>',
+//        '<form method="POST" action="">'
+//+'<p>'+data.id+'</p>'
+//+'</form>',
+
                     showCloseButton: true,
                     showCancelButton: false,
                     showConfirmButton: false,
-                    focusConfirm: false,
-                    
-                })
-            }
-
-        });
+                    focusConfirm: false
+        })
+        
+    }
     });
+    });
+    
 });
+
+
 
 </script>
 

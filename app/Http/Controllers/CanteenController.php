@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Canteen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CanteenController extends Controller
@@ -21,7 +22,7 @@ class CanteenController extends Controller
     /**
      * Show the form for creating a new resource.
      * @param  array $data
-     * @return \Illuminate\Http\Response
+
      */
     /**
      * Create a new user instance after a valid registration.
@@ -29,22 +30,30 @@ class CanteenController extends Controller
      * 
      * @return \App\Canteen
      */
-    public function add(Request $request)
+    public function add (Request $request)
     {
-        if(isset($request)){
+        //var_dump($request->all());
+        if(Auth::id()){
+       if(isset($request)){
        $data=$request->all();
-       var_dump($data['adress']);
+     
 //       DB::insert('insert into canteens (name,adress,city,post_code) values (?,?,?,?)',
 //        [$data['name'],$data['adress'],$data['city'],$data['post_code']]);
-        $canteen = new \App\Canteen();
+        $canteen = new Canteen();
         $canteen->name = $data['name'];
         $canteen->adress = $data['adress'];
         $canteen->city = $data['city'];
         $canteen->post_code = $data['post_code'];
         $canteen->save();
+        //$status='success';
+
+       return view('home');
+        }
+//        else{
+//            return false;
+//       }
        
         }
-        return view('home');
     }
 
     /**
@@ -53,7 +62,8 @@ class CanteenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    
+    public function store()
     {
         //
     }
@@ -95,9 +105,12 @@ class CanteenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function getCanteen (Request $request, $id)
     {
-        //
+        $id=$request->fromRoute('id');
+        var_dump($id);
+        $canteen = Canteen::find($id);
+        return response()->json($canteen);
     }
 
     /**
@@ -112,7 +125,8 @@ class CanteenController extends Controller
     }
     
     public function showSimpleCanteen(Request $request, $id){
-//        $id=$request->fromRoute('id');
+      // $id=$request->fromRoute('id');
+     //var_dump($id);
         $canteent = Canteen::find($id);
         return response()->json($canteent);
     }
