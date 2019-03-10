@@ -90,28 +90,23 @@ class CanteenController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+    
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        //var_dump($request->id);
+        $canteen = Canteen::find($request->id);
+        $canteen->name=$request->name;
+        $canteen->adress=$request->adress;
+        $canteen->city=$request->city;
+        $canteen->post_code=$request->post_code;
+        $canteen->save();
+        return redirect('home');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function getCanteen (Request $request, $id)
-    {
-        $id=$request->fromRoute('id');
-        var_dump($id);
-        $canteen = Canteen::find($id);
-        return response()->json($canteen);
-    }
+ 
+
 
     /**
      * Remove the specified resource from storage.

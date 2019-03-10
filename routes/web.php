@@ -27,8 +27,9 @@ Route::get('/show','CanteenController@show')->name('canteens');
 Route::get('/canteens', function (){
 return view('show')->name('show');
 });
-//Route::get('/get-ctn/{id}','CanteenController@showSimpleCanteen');
-Route::get('/getcanteen/{id}','CanteenController@getCanteen');
+Route::get('/get-ctn/{id}','CanteenController@showSimpleCanteen');
+Route::post('/edit-ctn','CanteenController@edit')->name('edit');
+//Route::get('/getcanteen/{id}','CanteenController@getCanteen');
 
 Route::get('/editUser', 'UserController@edit')->name('editUser');
 Route::post('/update','UserController@update')->name('update');

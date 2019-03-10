@@ -26,13 +26,13 @@
 
                         @foreach($data as $canteens)
 
-                        <tr class=" pointer"  >
+                        <tr class=" pointer"   >
                             <th scope="row"></th>
-                            <td class=""  >{{ $canteens->name}}</td>
+                            <td class="pcode" ctn="{{$canteens->id}}"  >{{ $canteens->name}}</td>
                             <td>{{ $canteens->adress}}</td>
                             <td>{{ $canteens->city}}</td>
                             <td>{{ $canteens->post_code}}</td>
-                            <td><button class="btn btn-dark pcode" my_id="{{$canteens->id}}">Edit</button></td>
+                            <td><button class="btn btn-dark" my_id="{{$canteens->id}}">Edit</button></td>
                         </tr>
 
                         @endforeach
@@ -57,60 +57,76 @@
 //            });
 //        });
 $(document).ready(function () {
-//    $('.pcode').click(function () {
-//        id = $(this).attr('ctn');
-//    console.log(id);
-//
-//        $.ajax({
-//            url: "get-ctn/" + id,
-//            success: function (data) {
-//         
-//                Swal.fire({
-//                    title: '<strong>Canteen click</strong>',
-//                    type: 'info',
-//                    html:'<p>' +data.name+ '</p>'
-//                    +'<p>' +data.adress + '</p>'
-//                    +'<p>' +data.post_code+ '</p>',
-//                                                    
-//                    showCloseButton: true,
-//                    showCancelButton: false,
-//                    showConfirmButton: false,
-//                    focusConfirm: false
-//                    
-//                })
-//            }
-//
-//        });
-//    });
-    
-    $('.pcode').click(function(){
-    id=$(this).attr('my_id');
-console.log(id);
+    $('.pcode').click(function () {
+        id = $(this).attr('ctn');
+    console.log(id);
 
-$.ajax({ 
-    url: "getcanteen/" + id,
-    
-    saccess: function (data) {
-        console.log(data.name);
-        Swal.fire({
-        title:'<strong>Canteen edit</strong>',
-        type:'info',
-        html:'<p>' +data.id+ '</p>',
-//                    +'<p>' +data.adress + '</p>'
-//                    +'<p>' +data.post_code+ '</p>',
-//        '<form method="POST" action="">'
-//+'<p>'+data.id+'</p>'
-//+'</form>',
+        $.ajax({
+            url: "get-ctn/" + id,
+            success: function (data) {
+         
+                Swal.fire({
+                    title: '<strong>Canteen click</strong>',
+                    type: 'info',
+                    html:
 
+             '<form method="POST" action="{{ route('edit') }}">'
+     +'@csrf'
+             +'<div class="form-group">'
+     +'<input id="id" name="id" type="text" class="form-control" style="display:none;" value="'+data.id+'">'
+     +'<label for="name">Name</label>'
+ +'<input id="name" name="name" type="text" class="form-control" value="'+data.name+'"></div>'
+             +'<div class="form-group">'
+     +'<label for="adress">Address</label>'
+ +'<input id="adress" name="adress" type="adress" class="form-control" value="'+data.adress+'"></div>'
+  +'<div class="form-group">'
+     +'<label for="city">City</label>'
+ +'<input id="city" name="city" type="city" class="form-control" value="'+data.city+'"></div>'
+              +'<div class="form-group">'
+     +'<label for="post_code">Post code</label>'
+ +'<input id="post_code" name="post_code" type="post_code" class="form-control" value="'+data.post_code+'"></div>'
+             +'<button id="buton" type="submit" class="btn btn-primary">Edit</button>'
+             +'</form>',
+                                                    
                     showCloseButton: true,
                     showCancelButton: false,
                     showConfirmButton: false,
                     focusConfirm: false
-        })
-        
-    }
+                    
+                })
+            }
+
+        });
     });
-    });
+    
+//    $('.pcode').click(function(){
+//    id=$(this).attr('my_id');
+//console.log(id);
+//
+//$.ajax({ 
+//    url: "getcanteen/" + id,
+//    
+//    saccess: function (data) {
+//        console.log(data.name);
+//        Swal.fire({
+//        title:'<strong>Canteen edit</strong>',
+//        type:'info',
+//        html:'<p>' +data.id+ '</p>',
+                    +'<p>' +data.adress + '</p>'
+                    +'<p>' +data.post_code+ '</p>',
+        '<form method="POST" action="">'
++'<p>'+data.id+'</p>'
+////+'</form>',
+//
+//                    showCloseButton: true,
+//                    showCancelButton: false,
+//                    showConfirmButton: false,
+//                    focusConfirm: false
+//        })
+//        
+//    }
+//    });
+//    });
     
 });
 
