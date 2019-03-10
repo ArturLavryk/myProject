@@ -28,11 +28,11 @@
 
                         <tr class=" pointer"   >
                             <th scope="row"></th>
-                            <td class="pcode" ctn="{{$canteens->id}}"  >{{ $canteens->name}}</td>
+                            <td>{{ $canteens->name}}</td>
                             <td>{{ $canteens->adress}}</td>
                             <td>{{ $canteens->city}}</td>
                             <td>{{ $canteens->post_code}}</td>
-                            <td><button class="btn btn-dark" my_id="{{$canteens->id}}">Edit</button></td>
+                            <td><button class="btn btn-dark pcode" ctn="{{$canteens->id}}">Edit</button></td>
                         </tr>
 
                         @endforeach

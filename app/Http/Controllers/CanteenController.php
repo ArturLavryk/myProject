@@ -102,7 +102,7 @@ class CanteenController extends Controller
         $canteen->city=$request->city;
         $canteen->post_code=$request->post_code;
         $canteen->save();
-        return redirect('home');
+        return redirect('show');
     }
 
  
