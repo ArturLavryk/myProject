@@ -114,9 +114,11 @@ class CanteenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+       $canteen=Canteen::find($id);
+       $canteen->delete();
+       return redirect('show');
     }
     
     public function showSimpleCanteen(Request $request, $id){

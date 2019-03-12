@@ -20,6 +20,7 @@
                             <th scope="col">{{ __('City') }}</th>
                             <th scope="col">{{ __('Post code') }}</th>
                             <th scope="col"></th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,7 @@
                             <td>{{ $canteens->city}}</td>
                             <td>{{ $canteens->post_code}}</td>
                             <td><button class="btn btn-dark pcode" ctn="{{$canteens->id}}">Edit</button></td>
+                            <td><button class="btn btn-danger del" id="del" onclick="deletectn(this,{{$canteens->id}})">Delete</button></td>
                         </tr>
 
                         @endforeach
@@ -56,6 +58,7 @@
 //);
 //            });
 //        });
+
 $(document).ready(function () {
     $('.pcode').click(function () {
         id = $(this).attr('ctn');
@@ -99,36 +102,9 @@ $(document).ready(function () {
         });
     });
     
-//    $('.pcode').click(function(){
-//    id=$(this).attr('my_id');
-//console.log(id);
-//
-//$.ajax({ 
-//    url: "getcanteen/" + id,
-//    
-//    saccess: function (data) {
-//        console.log(data.name);
-//        Swal.fire({
-//        title:'<strong>Canteen edit</strong>',
-//        type:'info',
-//        html:'<p>' +data.id+ '</p>',
-                    +'<p>' +data.adress + '</p>'
-                    +'<p>' +data.post_code+ '</p>',
-        '<form method="POST" action="">'
-+'<p>'+data.id+'</p>'
-////+'</form>',
-//
-//                    showCloseButton: true,
-//                    showCancelButton: false,
-//                    showConfirmButton: false,
-//                    focusConfirm: false
-//        })
-//        
-//    }
-//    });
-//    });
-    
+
 });
+
 
 
 
