@@ -35,6 +35,7 @@ Route::get('/meal',function(){
    return view('meal'); 
 });
 Route::post('/addmeal','MealController@create')->name('addmeal');
+Route::get('/showmeal','MealController@store')->name('showmeal');
 
 Route::get('/editUser', 'UserController@edit')->name('editUser');
 Route::post('/update','UserController@update')->name('update');

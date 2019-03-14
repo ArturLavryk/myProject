@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Meal;
+use Illuminate\Support\Facades\DB;
 
 
 class MealController extends Controller
@@ -38,9 +39,16 @@ return view('meal');
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+      $num=0;
+                $meal=DB::select('Select * from Meals');
+                foreach($meal as $meals){
+                   $data[$num]=$meals;
+                   $num++;
+                }
+               // var_dump($data);
+        return view('storemeal',['data'=>$data]);
     }
 
     /**
@@ -49,9 +57,9 @@ return view('meal');
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        
     }
 
     /**
@@ -62,7 +70,7 @@ return view('meal');
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

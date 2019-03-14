@@ -7,7 +7,7 @@
             <file>file:/C:/xampp/htdocs/myProject/routes/web.php</file>
             <file>file:/C:/xampp/htdocs/myProject/resources/views/add.blade.php</file>
             <file>file:/C:/xampp/htdocs/myProject/public/js/help.js</file>
-            <file>file:/C:/xampp/htdocs/myProject/resources/views/show.blade.php</file>
+            <file>file:/C:/xampp/htdocs/myProject/app/Http/Controllers/MealController.php</file>
             <file>file:/C:/xampp/htdocs/myProject/resources/views/layouts/app.blade.php</file>
         </group>
     </open-files>
