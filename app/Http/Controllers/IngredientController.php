@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Ingredients;
 use App\Meal;
-use Illuminate\Support\Facades\DB;
 
-
-class MealController extends Controller
+class IngredientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,11 +25,11 @@ class MealController extends Controller
      */
     public function create(Request $request)
     {
-    $meal= new Meal();
-$meal->name=$request->name;
-$meal->description=$request->description;
-$meal->save();
-return view('meal');
+        $ingredient=new Ingredients();
+        $ingredient->name=$request->name;
+        $ingredient->meal_id=1;
+        $ingredient->save();
+        return redirect('ingredient');
     }
 
     /**
@@ -39,15 +38,19 @@ return view('meal');
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         $num=0;
-                $meal= Meal::All();
-                foreach($meal as $meals){
-                   $data[$num]=$meals;
-                   $num++;
-                }
-        return view('storemeal',['data'=>$data]);
+        
+      $ingredient=Ingredients::all();
+      foreach ($ingredient as $ingredients){
+          $data[$num]=$ingredients;
+          $meal= Meal::find($data[$num]->meal_id);
+          $data[$num]['mealName']=$meal->name;
+      $data[$num]['mealDescription']=$meal->description;
+      $num++;
+      }
+      return view('storeIngredient',['data'=>$data]);
     }
 
     /**
@@ -58,11 +61,8 @@ return view('meal');
      */
     public function show($id)
     {
-//        var_dump($id);
-        $meal=Meal::find($id);
-       // var_dump($meal);
-        return response()->json($meal);
-        
+        $ingredient= Ingredients::find($id);
+        return response()->json($ingredient);
     }
 
     /**
@@ -71,9 +71,12 @@ return view('meal');
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-
+        $canteen = Ingredients::find($request->id);
+        $canteen->name=$request->name;
+        $canteen->save();
+        return redirect('storeingredient');
     }
 
     /**
@@ -94,12 +97,10 @@ return view('meal');
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
-    }
-    public function showp(Request $request){
-        $id=$request->id;
-        return response()->json(Meal::find($id));
+        $ingredient= Ingredients::find($id);
+        $ingredient->delete();
+        return view('storeingredient');
     }
 }

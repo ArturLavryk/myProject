@@ -35,7 +35,19 @@ Route::get('/meal',function(){
    return view('meal'); 
 });
 Route::post('/addmeal','MealController@create')->name('addmeal');
-Route::get('/showmeal','MealController@store')->name('showmeal');
+Route::get('/storemeal','MealController@store')->name('storemeal');
+//Route::get('/showmeal/{id}','MealController@show')->name('showmeal');
+Route::post('/showmeal','MealController@showp')->name('showmeal');
 
 Route::get('/editUser', 'UserController@edit')->name('editUser');
 Route::post('/update','UserController@update')->name('update');
+
+Route::get('/ingredient',function(){
+return view('addIngredient');
+})->name('ingredient');
+Route::post('/addingredient','IngredientController@create')->name('addingredient');
+Route::get('/storeingredient','IngredientController@store')->name('storeingredient');
+Route::get('/get-ing/{id}','IngredientController@show');
+Route::post('/editIngredient','IngredientController@edit')->name('editIngredient');
+Route::get('/deleteing/{id}','IngredientController@delete');
+

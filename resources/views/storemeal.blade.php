@@ -2,32 +2,28 @@
 
 @section('content')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-
+<style>
+    .bp{
+          
+    }
+</style>
 <div class="container">
     <!-- Control the column width, and how they should appear on different devices -->
-
+    <div class="row">
    @foreach ($data as $meal)
    
 
-    <div class="row">
-      <div class="col-sm-4" style="background-color:yellow; text-align: center;">
+   
+        <div class="col-sm-3 bp simple px-1 py-1" style="background-color:yellow; background-clip: content-box; text-align: center;" myid="{{$meal->id}}">
           <p>{{$meal->name}}</p>
           <p>{{$meal->description}}</p>
       </div>
-        <div class="col-sm-4" style="background-color:orange;text-align: center;">
-             <p>{{$meal->name}}</p>
-          <p>{{$meal->description}}</p>
-            
-        </div>
-        <div class="col-sm-4" style="background-color:yellow;text-align: center;">
-            
-             <p>{{$meal->name}}</p>
-          <p>{{$meal->description}}</p>
-        </div>
-    </div>
-    <br>
+        
+    
+ 
 
 @endforeach
+ </div>
 </div>
 <script>
 //    $(document).ready(function(){
@@ -43,23 +39,52 @@
 //        });
 
 $(document).ready(function () {
-    $('.pcode').click(function () {
-        id = $(this).attr('ctn');
-    console.log(id);
-
+    $('.simple2').click(function () {
+        id = $(this).attr('myid');
+        console.log(id);
         $.ajax({
-            url: "get-ctn/" + id,
+            url: "showmeal/" + id,
+            method: 'get',
             success: function (data) {
-         
-
-
+                console.log(data);
+Swal.fire(
+  'Good job!',
+  'You clicked the button!',
+  'success'
+);
             }
+                   
 
         });
+                
     });
     
+  $('.simple').click(function () {
+        id = $(this).attr('myid');
+        CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        console.log(id);
+        $.ajax({
+            url: "showmeal" ,
+            method: 'post',
+            data: {_token: CSRF_TOKEN,'id':id},
+            success: function (data) {
+                console.log(data);
+Swal.fire(
+  'Good job!',
+  'You clicked the button!',
+  'success'
+);
+            }
+                   
 
+        });
+                
+    });
+    
 });
+
+
+
 
 
 
