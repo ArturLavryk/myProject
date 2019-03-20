@@ -38,12 +38,22 @@
                                 @endif
                             </div>
                         </div>
+                        
+
+
+      @foreach($data as $datas)
+    <label for="ingredient" class="checkbox-inline ml-2">
+        <input type="checkbox" name="ingredient[]" value="{{$datas->id}}">{{$datas->name}}
+    </label>
+@endforeach
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button id="buton" type="submit" class="btn btn-primary pcode">
                                     {{ __('Create') }}
                                 </button>
+                                </div>
                             </div>
                         </div>
                     </form>

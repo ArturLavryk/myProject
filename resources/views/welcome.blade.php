@@ -87,6 +87,10 @@
                 <div class="links">
                     <a href="add">Add Canteen</a>
                     <a href="show">Show canteens</a>
+                    <a href="meal">Add meal</a>
+                    <a href="storemeal">Store meal</a>
+                    <a href="ingredient">Add ingredient</a>
+                    <a href="storeingredient">Show ingredients</a>
                 </div>
             </div>
         </div>

@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Meal;
-use App\Ingredients;
-use App\MealIngredients;
-use Illuminate\Support\Facades\DB;
+use App\Options;
 
-
-class MealController extends Controller
+class OptionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,24 +24,12 @@ class MealController extends Controller
      */
     public function create(Request $request)
     {
-    //   var_dump($request->ingredient);
-        
-    $meal= new Meal();
-$meal->name=$request->name;
-$meal->description=$request->description;
-$meal->save();
-$num=count($request->ingredient);
-
-//        var_dump($num);
-for($i=0;$i<$num;$i++){
-    $mealIng = new MealIngredients();
-    $mealIng->id_meal=$meal->id;
-    $mealIng->id_ingredients = $request->ingredient[$i];
-    $mealIng->save();
-            //var_dump($request->ingredient[$i]);         
-}
-//var_dump($ing);
-return view('meal');
+        $options = new Options();
+        $options->name = $request->name;
+        $options->weight = $request->weight;
+        $options->price = $request->price;
+        $options->save();
+        return view('welcome');
     }
 
     /**
@@ -54,15 +38,10 @@ return view('meal');
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $num=0;
-                $meal= Meal::All();
-                foreach($meal as $meals){
-                   $data[$num]=$meals;
-                   $num++;
-                }
-        return view('storemeal',['data'=>$data]);
+        $options = Options::all();
+        return view('storeoptions',['data' => $options]);
     }
 
     /**
@@ -73,11 +52,7 @@ return view('meal');
      */
     public function show($id)
     {
-//        var_dump($id);
-        $meal=Meal::find($id);
-       // var_dump($meal);
-        return response()->json($meal);
-        
+        //
     }
 
     /**
@@ -88,7 +63,7 @@ return view('meal');
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -112,16 +87,5 @@ return view('meal');
     public function destroy($id)
     {
         //
-    }
-    
-    
-    public function showp(Request $request){
-        $id=$request->id;
-        return response()->json(Meal::find($id));
-    }
-    
-    public function addview(){
-        $ingreient = Ingredients::all();
-        return view('meal',['data'=>$ingreient]);
     }
 }
