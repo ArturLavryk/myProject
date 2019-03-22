@@ -68,6 +68,9 @@ Route::get('/option' , function(){
     return view('option');
 })->name('option');
 Route::post('/addoption' , 'OptionsController@create')->name('addoption');
-Route::get('/storeoptons' , 'OptionsController@store')->name('storeoptons');
+Route::get('/storeoptions' , 'OptionsController@store')->name('storeoptions');
+Route::get('/destroy/{id}','OptionsController@destroy');
+Route::get('/showSimple/{id}' , 'OptionsController@show');
+Route::post('/editOption' , 'OptionsController@edit')->name('editOpt');
 
 

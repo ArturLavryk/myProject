@@ -34,7 +34,7 @@
                             <td>{{ $option->price}}</td>
                           
                             <td><button class="btn btn-dark pcode" ctn="{{$option->id}}">Edit</button></td>
-                            <td><button class="btn btn-danger del" id="del" onclick="deletectn(this,{{$option->id}})">Delete</button></td>
+                            <td><button class="btn btn-danger del" id="del" onclick="deleteOptions(this,{{$option->id}})">Delete</button></td>
                         </tr>
 
                         @endforeach
@@ -65,7 +65,7 @@ $(document).ready(function () {
     console.log(id);
 
         $.ajax({
-            url: "get-ctn/" + id,
+            url: "showSimple/" + id,
             success: function (data) {
          
                 Swal.fire({
@@ -73,21 +73,19 @@ $(document).ready(function () {
                     type: 'info',
                     html:
 
-             '<form method="POST" action="{{ route('edit') }}">'
+             '<form method="POST" action="{{ route('editOpt') }}">'
      +'@csrf'
              +'<div class="form-group">'
      +'<input id="id" name="id" type="text" class="form-control" style="display:none;" value="'+data.id+'">'
      +'<label for="name">Name</label>'
  +'<input id="name" name="name" type="text" class="form-control" value="'+data.name+'"></div>'
              +'<div class="form-group">'
-     +'<label for="adress">Address</label>'
- +'<input id="adress" name="adress" type="adress" class="form-control" value="'+data.adress+'"></div>'
+     +'<label for="weight">Weight</label>'
+ +'<input id="weight" name="weight" type="number" class="form-control" value="'+data.weight+'"></div>'
   +'<div class="form-group">'
-     +'<label for="city">City</label>'
- +'<input id="city" name="city" type="city" class="form-control" value="'+data.city+'"></div>'
+     +'<label for="price">Price</label>'
+ +'<input id="price" name="price" type="price" class="form-control" value="'+data.price+'"></div>'
               +'<div class="form-group">'
-     +'<label for="post_code">Post code</label>'
- +'<input id="post_code" name="post_code" type="post_code" class="form-control" value="'+data.post_code+'"></div>'
              +'<button id="buton" type="submit" class="btn btn-primary">Edit</button>'
              +'</form>',
                                                     

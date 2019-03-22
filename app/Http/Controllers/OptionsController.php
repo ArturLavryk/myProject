@@ -52,7 +52,9 @@ class OptionsController extends Controller
      */
     public function show($id)
     {
-        //
+        $option = Options::find($id);
+       // var_dump($option);
+        return response()->json($option);
     }
 
     /**
@@ -61,9 +63,14 @@ class OptionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $option = Options::find($request->id);
+        $option->name = $request->name;
+        $option->weight = $request->weight;
+        $option->price = $request->price;
+        $option->save();
+        return redirect ('storeoptions');
     }
 
     /**
@@ -86,6 +93,7 @@ class OptionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $option = Options::find($id);
+        $option->delete();        
     }
 }
