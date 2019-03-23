@@ -35,6 +35,9 @@ Route::get('/get-ctn/{id}' , 'CanteenController@showSimpleCanteen');
 Route::post('/edit-ctn','CanteenController@edit')->name('edit');
 //Route::get('/getcanteen/{id}','CanteenController@getCanteen');
 Route::get('/delete/{id}','CanteenController@delete');
+Route::get('/myCanteens' , 'CanteenController@show')->name('myCanteens');
+Route::get('canteenMeal/{id}','CanteenController@canteenMeal');
+Route::post('addMealCanteen' , 'CanteenController@addMeal')->name('CanteenMeal');
 
 
 

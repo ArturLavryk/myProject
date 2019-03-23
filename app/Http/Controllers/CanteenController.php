@@ -6,6 +6,8 @@ use App\Canteen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Meal;
+use App\CanteenMeals;
 
 class CanteenController extends Controller
 {
@@ -74,16 +76,20 @@ class CanteenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request)
     {
         $num=0;
-        $canteen=DB::select('Select * from canteens');
+        $canteen = Canteen::all();
         foreach ($canteen as $canteens){        
           $data[$num]=$canteens;
           $num++;
         }
+        if($request->url() == route('canteens')){
         if(isset($data)){
         return view('show',['data'=>$data]);
+        }
+        } else {
+        return view('myCanteen' , ['data'=>$data]);    
         }
     }
 
@@ -127,5 +133,31 @@ class CanteenController extends Controller
         $canteent = Canteen::find($id);
         return response()->json($canteent);
     }
+    
+    
+    public function canteenMeal($id){
+        $canteen = Canteen::find($id);
+        $meals = Meal::all();
+        $data['canteen']=$canteen;
+        $num = 0;
+        foreach ($meals as $meal){
+            $data['meal'][$num]=$meal;
+            $num++;
+        }
+        return view('mealToCanteen' , ['data' => $data]); 
+        }
+        
+        
+        public function addMeal (Request $request){
+           // var_dump($request->idCanteen);
+            
+            foreach ($request->meal as $meal){
+                $melCan = new CanteenMeals();
+                $melCan->id_canteen = $request->idCanteen;
+                $melCan->id_meals = $meal;
+                $melCan->save();
+            }
+            return redirect('myCanteens');
+        }
     
 }
