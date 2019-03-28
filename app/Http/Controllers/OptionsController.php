@@ -28,6 +28,7 @@ class OptionsController extends Controller
         $options->name = $request->name;
         $options->weight = $request->weight;
         $options->price = $request->price;
+        $options->id_meal = 1;
         $options->save();
         return view('welcome');
     }

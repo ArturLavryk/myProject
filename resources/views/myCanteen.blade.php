@@ -26,7 +26,7 @@
                     <tbody>
 
                         @foreach($data as $canteens)
-
+                       
                         <tr class=" pointer"   >
                             <th scope="row"></th>
                             <td>{{ $canteens->name}}</td>
@@ -36,7 +36,7 @@
                             <td><a href="/myProject/public/canteenMeal/{{$canteens->id}}"><button class="btn btn-dark pcode" ctn="{{$canteens->id}}">Add meal</button></a></td>
                             <td><button class="btn btn-danger del" id="del" onclick="deletectn(this,{{$canteens->id}})">Delete</button></td>
                         </tr>
-
+                           
                         @endforeach
                     </tbody>
                 </table>

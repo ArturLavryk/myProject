@@ -10,13 +10,15 @@
 <div class="container">
     <!-- Control the column width, and how they should appear on different devices -->
     <div class="row">
-   @foreach ($data as $meal)
+   @foreach ($data as $canteen)
    
 
    
-        <div class="col-sm-3 bp simple px-1 py-1" style="background-color:yellow; background-clip: content-box; text-align: center;" myid="{{$meal->id}}">
-          <p>{{$meal->name}}</p>
-          <p>{{$meal->description}}</p>
+        <div class="col-sm-3 bp simple px-1 py-1" style="background-color:yellow; background-clip: content-box; text-align: center;" myid="{{$canteen->id}}">
+          <p>{{$canteen->name}}</p>
+          <p>{{$canteen->adress}}</p>
+          <p>{{$canteen->city}}</p>
+          <p>{{$canteen->post_code}}</p>
       </div>
         
     

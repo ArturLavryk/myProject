@@ -159,5 +159,16 @@ class CanteenController extends Controller
             }
             return redirect('myCanteens');
         }
+        
+        
+        public function selectCanteen (){
+            $num=0;
+        $canteen = Canteen::all();
+        foreach ($canteen as $canteens){        
+          $data[$num]=$canteens;
+          $num++;
+        }
+        return view('select' , ['data'=>$data]);
+        }
     
 }

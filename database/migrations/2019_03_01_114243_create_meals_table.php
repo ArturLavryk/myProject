@@ -17,6 +17,7 @@ class CreateMealsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
+            $table->double('price', 4, 2);
             $table->smallInteger('categoryId');
             $table->smallInteger('courseId');
             $table->timestamps();

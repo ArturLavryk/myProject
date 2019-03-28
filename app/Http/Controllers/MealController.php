@@ -33,6 +33,7 @@ class MealController extends Controller
     $meal= new Meal();
 $meal->name=$request->name;
 $meal->description=$request->description;
+$meal->price = $request->price;
 $meal->save();
 $num=count($request->ingredient);
 
