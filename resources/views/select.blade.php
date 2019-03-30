@@ -19,6 +19,7 @@
           <p>{{$canteen->adress}}</p>
           <p>{{$canteen->city}}</p>
           <p>{{$canteen->post_code}}</p>
+          <td><a href="/myProject/public/orderMeal/{{$canteen->id}}"><button class="btn btn-dark pcode" ctn="{{$canteen->id}}">Add meal</button></a></td>
       </div>
         
     

@@ -38,7 +38,7 @@ Route::get('/delete/{id}','CanteenController@delete');
 Route::get('/myCanteens' , 'CanteenController@show')->name('myCanteens');
 Route::get('canteenMeal/{id}','CanteenController@canteenMeal');
 Route::post('addMealCanteen' , 'CanteenController@addMeal')->name('CanteenMeal');
-Route::get('selectCanteen' , 'CanteenController@selectCanteen');
+
 
 
 //Meal route
@@ -77,4 +77,10 @@ Route::get('/destroy/{id}','OptionsController@destroy');
 Route::get('/showSimple/{id}' , 'OptionsController@show');
 Route::post('/editOption' , 'OptionsController@edit')->name('editOpt');
 
+
+
+// Order routes
+Route::get('selectCanteen' , 'OrderController@selectCanteen');
+Route::get('/orderMeal/{id}' , 'OrderController@selectCanteenMeals');
+Route::Post('/setOrder' , 'OrderController@createOrder')->name('order');
 
