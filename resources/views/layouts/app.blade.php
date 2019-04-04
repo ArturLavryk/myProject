@@ -76,6 +76,9 @@
                             <li class="nav-item">
                              <a class="nav-link" href="{{ route('editUser')}}">{{ __('Edit') }}</a>
                             </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('box') }}">{{__('Box')}}</a>
+                            </li>
                             @endif
                                 </div>
                             </li>

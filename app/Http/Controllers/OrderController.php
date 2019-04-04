@@ -76,4 +76,35 @@ public function selectCanteenMeals ($id){
         //var_dump($order->id);
     }
     
+    
+    public function boxMeal(){
+        
+        if(Auth::id()){
+            $order = new Order();
+            $data = $order->getUserOrder(Auth::id());
+            //var_dump($data[0]->id);
+           $mealOrder = new MealOrder();
+           $idMeal = $mealOrder->getIdMeal($data[0]->id);
+           $optionOrder = new OrderOptions();
+          $optOrd = $optionOrder->getIdOption($data[0]->id);
+           $num = 0;
+           $datas['price'][0]=0;
+           foreach ($idMeal as $id){
+           $datas['meal'][$num] = Meal::find($id->id);
+           $datas['price'][0]+=$datas['meal'][$num]->price;
+           $num++;
+           }
+           $num = 0;
+           $datas['price'][1]=0;
+           foreach ($optOrd as $opt){
+               $datas['option'][$num] = Options::find($opt->id);
+               $datas['price'][1]+=$datas['option'][$num]->price;
+               $num++;
+           }
+           $datas['price'][2] = $datas['price'][1] + $datas['price'][0];
+           var_dump($datas['price']);
+          // return view('box', ['data'=>$datas]);
+        }
+    }
+    
 }

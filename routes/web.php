@@ -83,4 +83,5 @@ Route::post('/editOption' , 'OptionsController@edit')->name('editOpt');
 Route::get('selectCanteen' , 'OrderController@selectCanteen');
 Route::get('/orderMeal/{id}' , 'OrderController@selectCanteenMeals');
 Route::Post('/setOrder' , 'OrderController@createOrder')->name('order');
+Route::get('/box' , 'OrderController@boxMeal')->name('box');
 

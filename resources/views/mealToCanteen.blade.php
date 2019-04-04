@@ -27,12 +27,16 @@
                         </div>
                         
 
-
+                        
+                        <div class="row">
       @foreach($data['meal'] as $datas)
-    <label for="ingredient" class="checkbox-inline ml-2">
+      <div class="col-md-4 pt-4">
+      <label for="ingredient" class="checkbox-inline ml-2">
         <input type="checkbox" name="meal[]" value="{{$datas->id}}">{{$datas->name}}
     </label>
+      </div>
 @endforeach
+                        </div>
 
 
                         <div class="form-group row mb-0">
