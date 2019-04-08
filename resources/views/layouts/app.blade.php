@@ -61,7 +61,7 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
+                            
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -76,9 +76,30 @@
                             <li class="nav-item">
                              <a class="nav-link" href="{{ route('editUser')}}">{{ __('Edit') }}</a>
                             </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('box') }}">{{__('Box')}}</a>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('selectCanteen') }}">{{__('Order')}}</a>
                             </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('box') }}">{{__('Box')}}</a>
+                            </li>
+                            
+                            <div class="dropdown">
+                              <button class="btn border-0 btn-light dropdown-toggle" type="button" data-toggle="dropdown">Canteen
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu">
+                                  <li><a class="nav-link" href="add">Add canteen</a></li>
+                                  <li><a class="nav-link" href="show">Show canteen</a></li>
+                              </ul>
+
+                            </div>
+                                <div class="dropdown">
+                                <button class="btn border-0 btn-light dropdown-toggle" type="button" data-toggle="dropdown">Meal
+                                    <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link" href="meal">Add meal</a></li>
+                                    <li><a class="nav-link" href="storemeal">Show meal</a></li>
+                                </ul>
+                            </div>
                             @endif
                                 </div>
                             </li>

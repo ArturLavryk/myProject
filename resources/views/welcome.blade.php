@@ -91,6 +91,7 @@
                     <a href="storemeal">Store meal</a>
                     <a href="ingredient">Add ingredient</a>
                     <a href="storeingredient">Show ingredients</a>
+                    <a href="selectCanteen">Order</a>
                 </div>
             </div>
         </div>

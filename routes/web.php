@@ -80,8 +80,9 @@ Route::post('/editOption' , 'OptionsController@edit')->name('editOpt');
 
 
 // Order routes
-Route::get('selectCanteen' , 'OrderController@selectCanteen');
+Route::get('selectCanteen' , 'OrderController@selectCanteen')->name('selectCanteen');
 Route::get('/orderMeal/{id}' , 'OrderController@selectCanteenMeals');
 Route::Post('/setOrder' , 'OrderController@createOrder')->name('order');
 Route::get('/box' , 'OrderController@boxMeal')->name('box');
+Route::get('/enter' , 'OrderController@enter')->name('enter');
 

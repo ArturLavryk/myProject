@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Canteen;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,7 @@ use App\Options;
 use App\Order;
 use App\MealOrder;
 use App\OrderOptions;
-
+use App\Http\Menagers\OrderMenager;
 
 class OrderController extends Controller
 {
@@ -82,29 +83,36 @@ public function selectCanteenMeals ($id){
         if(Auth::id()){
             $order = new Order();
             $data = $order->getUserOrder(Auth::id());
+
+            if (isset($data[0]->id)){
+                
+           
             //var_dump($data[0]->id);
            $mealOrder = new MealOrder();
            $idMeal = $mealOrder->getIdMeal($data[0]->id);
            $optionOrder = new OrderOptions();
           $optOrd = $optionOrder->getIdOption($data[0]->id);
-           $num = 0;
-           $datas['price'][0]=0;
-           foreach ($idMeal as $id){
-           $datas['meal'][$num] = Meal::find($id->id);
-           $datas['price'][0]+=$datas['meal'][$num]->price;
-           $num++;
-           }
-           $num = 0;
-           $datas['price'][1]=0;
-           foreach ($optOrd as $opt){
-               $datas['option'][$num] = Options::find($opt->id);
-               $datas['price'][1]+=$datas['option'][$num]->price;
-               $num++;
-           }
-           $datas['price'][2] = $datas['price'][1] + $datas['price'][0];
-           var_dump($datas['price']);
-          // return view('box', ['data'=>$datas]);
+           $menager = new OrderMenager();
+           $datas['meal'] = $menager->getMeal($idMeal);
+           
+           $datas['option'] = $menager->getOption($optOrd);
+               
+           $datas['price'] = $menager->getPrice();
+            $datas['order'] = $data[0]->id;
+           return view('box', ['data'=>$datas]);
+            } else {
+            return redirect('selectCanteen');    
+            }
+        } else {
+        return redirect('selectCanteen');    
         }
+    }
+    
+    public function enter(Request $request){
+        $order = Order::find($request->orderId);
+        $order->status = 2;
+        $order->save();
+        return redirect('selectCanteen');
     }
     
 }
