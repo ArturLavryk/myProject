@@ -6,6 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Canteen extends Model
 {
-
-    //
+    protected $table = 'canteens';
 }

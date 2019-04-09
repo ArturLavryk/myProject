@@ -29,7 +29,7 @@ Route::post('/addcanteen','CanteenController@add')->name('addcanteen');
 
 Route::get('/show','CanteenController@show')->name('canteens');
 Route::get('/canteens', function (){
-return view('show')->name('show');
+    return view('show')->name('show');
 });
 Route::get('/get-ctn/{id}' , 'CanteenController@showSimpleCanteen');
 Route::post('/edit-ctn','CanteenController@edit')->name('edit');
@@ -58,7 +58,7 @@ Route::post('/update','UserController@update')->name('update');
 
 //Ingredient route
 Route::get('/ingredient',function(){
-return view('addIngredient');
+    return view('addIngredient');
 })->name('ingredient');
 Route::post('/addingredient','IngredientController@create')->name('addingredient');
 Route::get('/storeingredient','IngredientController@store')->name('storeingredient');
