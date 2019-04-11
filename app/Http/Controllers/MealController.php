@@ -30,23 +30,23 @@ class MealController extends Controller
     {
     //   var_dump($request->ingredient);
         
-    $meal= new Meal();
-$meal->name=$request->name;
-$meal->description=$request->description;
-$meal->price = $request->price;
-$meal->save();
-$num=count($request->ingredient);
+        $meal = new Meal();
+        $meal->name = $request->name;
+        $meal->description = $request->description;
+        $meal->price = $request->price;
+        $meal->save();
+        $num = count($request->ingredient);
 
-//        var_dump($num);
-for($i=0;$i<$num;$i++){
-    $mealIng = new MealIngredients();
-    $mealIng->id_meal=$meal->id;
-    $mealIng->id_ingredients = $request->ingredient[$i];
-    $mealIng->save();
+
+        for($i=0;$i<$num;$i++){
+            $mealIng = new MealIngredients();
+            $mealIng->id_meal = $meal->id;
+            $mealIng->id_ingredients = $request->ingredient[$i];
+            $mealIng->save();
             //var_dump($request->ingredient[$i]);         
-}
-//var_dump($ing);
-return view('meal');
+        }
+
+        return redirect('storemeal');
     }
 
     /**
