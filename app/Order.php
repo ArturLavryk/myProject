@@ -10,7 +10,8 @@ class Order extends Model
     
     public function getUserOrder($id){
         $this->data = Order::where('id_user', '=', $id)->where('status', '=', 1)->get();
-        
         return $this->data;
     }
+    
+
 }

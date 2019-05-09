@@ -51,28 +51,13 @@ public function selectCanteen (){
     
     public function createOrder (Request $request) {
         if(Auth::check()){
-            $order = new Order();
-            $order->id_canteen = $request->idCanteen;
-            $order->id_user = Auth::id();
-            $order->status = 1;
-            $order->time = $request->time;
-            $order->save();
-        
-            foreach ($request->meal as $meal){
-                $mealOrder = new MealOrder();
-                $mealOrder->id_meal = $meal;
-                $mealOrder->id_order = $order->id;
-                $mealOrder->save();
-            }
+            $menager = new OrderMenager();
+            $order = $menager->createOrder($request->idCanteen, $request->time, Auth::id());
+            $menager->createMealOrder($request->meal, $order->id);
             if (isset($request->option)){
-                foreach ($request->option as $options){
-                    $opt = new OrderOptions();
-                    $opt->id_order = $order->id;
-                    $opt->id_options = $options;
-                    $opt->save();  
-                }
+               $menager->createOrderOptions($request->option, $order->id);
             }
-            return view('order');
+            return redirect('success');
         } 
         else {
             return redirect('register');
@@ -92,9 +77,7 @@ public function selectCanteen (){
                 $optOrd = $optionOrder->getIdOption($data[0]->id);
                 $menager = new OrderMenager();
                 $datas['meal'] = $menager->getMeal($idMeal);
-           
                 $datas['option'] = $menager->getOption($optOrd);
-               
                 $datas['price'] = $menager->getPrice();
                 $datas['order'] = $data[0]->id;
                 return view('box', ['data'=>$datas]);
@@ -105,6 +88,7 @@ public function selectCanteen (){
             return redirect('selectCanteen');    
         }
     }
+    
     
     public function enter(Request $request){
         $order = Order::find($request->orderId);
