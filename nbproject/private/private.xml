@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/myProject/app/MealOrder.php</file>
+            <file>file:/C:/xampp/htdocs/myProject/routes/web.php</file>
+            <file>file:/C:/xampp/htdocs/myProject/public/css/menu.css</file>
+            <file>file:/C:/xampp/htdocs/myProject/app/Http/Services/CanteensService.php</file>
+            <file>file:/C:/xampp/htdocs/myProject/app/OrderOptions.php</file>
+            <file>file:/C:/xampp/htdocs/myProject/app/Http/Controllers/Api/CanteensController.php</file>
+            <file>file:/C:/xampp/htdocs/myProject/resources/views/layouts/app.blade.php</file>
+            <file>file:/C:/xampp/htdocs/myProject/resources/views/success.blade.php</file>
+            <file>file:/C:/xampp/htdocs/myProject/database/factories/UserFactory.php</file>
+            <file>file:/C:/xampp/htdocs/myProject/app/Http/Controllers/OrderController.php</file>
+        </group>
     </open-files>
 </project-private>

@@ -45,7 +45,7 @@ public function selectCanteen (){
         $data['options'] = Options::all();
         //var_dump($data['options']); 
         $data['id_canteen'][0] = $id;
-        return view('order' , ['data'=>$data]);
+        return view('order' , ['data' => $data]);
     }
     
     
@@ -95,6 +95,34 @@ public function selectCanteen (){
         $order->status = 2;
         $order->save();
         return redirect('selectCanteen');
+    }
+    
+    
+    public function getOrder(){
+        if(Auth::check()){
+                $order = Order::where('id_user', Auth::id())->where('status', 2)->get();
+                $num = 0;
+                $menager = new OrderMenager();
+                foreach ($order as $ord){
+                    
+                    $mealOrder = new MealOrder();
+                    $idMeal = $mealOrder->getIdMeal($ord->id);
+                    $data['meal'][$num] = $menager->getMeal($idMeal);
+                    $optionOrder = new OrderOptions();
+                    $optOrd = $optionOrder->getIdOption($ord->id);
+                    $data['option'][$num] = $menager->getOption($optOrd);
+                    $num++;
+                   
+                }
+           
+             //var_dump($data['option'][0][1]->name);
+            
+            //$data['price'] = $menager->getPrice();
+            
+            return view('myOrders',['data' => $data]);
+        } else {
+            return redirect('login');    
+        }
     }
     
 }

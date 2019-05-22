@@ -11,16 +11,11 @@
     <!-- Control the column width, and how they should appear on different devices -->
     <div class="row">
    @foreach ($data as $meal)
-   
 
-   
         <div class="col-sm-3 bp simple px-1 py-1" style="background-color:yellow; background-clip: content-box; text-align: center;" myid="{{$meal->id}}">
           <p>{{$meal->name}}</p>
           <p>{{$meal->description}}</p>
       </div>
-        
-    
- 
 
 @endforeach
  </div>

@@ -13,4 +13,5 @@ class MealOrder extends Model
         
         return $this->data;
     }
+    
 }

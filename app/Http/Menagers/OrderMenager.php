@@ -28,8 +28,10 @@ class OrderMenager {
     
     
     public function getOption($optOrd){
+        $num = 0; 
         foreach ($optOrd as $opt){
-            $this->option[] = Options::find($opt->id_options);
+            $this->option[$num] = Options::find($opt->id_options);
+            $num++;
         }
         return $this->option;
     }
