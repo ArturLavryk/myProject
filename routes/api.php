@@ -26,5 +26,5 @@ Route::group(['prefix' => 'application'], function() {
     Route::get('/canteens', 'Api\CanteensController@canteens');
     Route::get('/meals/{id?}', 'Api\CanteensController@meals');
     Route::get('/options', 'Api\CanteensController@options');
-
+    Route::post('/order', 'Api\CanteensController@order');
 });
