@@ -114,14 +114,14 @@ public function selectCanteen (){
                     $num++;
                    
                 }
-           
+                var_dump($data['option'][0][0]->name);
              //var_dump($data['option'][0][1]->name);
             
             //$data['price'] = $menager->getPrice();
             
-            return view('myOrders',['data' => $data]);
+           // return view('myOrders',['data' => $data]);
         } else {
-            return redirect('login');    
+            //return redirect('login');    
         }
     }
     

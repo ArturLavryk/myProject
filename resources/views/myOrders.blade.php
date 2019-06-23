@@ -11,23 +11,28 @@
 </style>
 <div class="container">
     <div class=" justify-content-center">
-        <div class="col-md-11">
+        <div class="col-md-12">
+            @foreach($data['meal'] as $d)
+            
+            <br>
             <div class="dropdown">
-                <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+                <div>
+                <button onclick="myFunction()" class="dropbtn ">@foreach($d as $meal){{$meal->name}}{{" "}}@endforeach</button>
+                </div>
+                @foreach($data['option'] as $opt)
                 <div id="myDropdown" class="dropdown-content">
                     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                    <a href="#about">About</a>
-                    <a href="#base">Base</a>
-                    <a href="#blog">Blog</a>
-                    <a href="#contact">Contact</a>
-                    <a href="#custom">Custom</a>
-                    <a href="#support">Support</a>
-                    <a href="#tools">Tools</a>
+                    <b>@foreach($opt as $option) {{$option[0]->name}} {{","}} @endforeach</b>
                 </div>
+                @endforeach 
             </div>
+              
+            @endforeach
         </div>
     </div>
 </div>
+
+
 
 
 

@@ -22,5 +22,23 @@ class CanteensController extends Controller {
         $result = Response()->json($this->_service->getAll());
         return $result;
     }
+    
+    public function meals($canteenId = 0){
+        if($canteenId !=0){
+        $result = Response()->json($this->_service->getMeal($canteenId));
+        } else {
+        $result = Response()->json($this->_service->meal());    
+        }
+        if(!empty($result)){
+            return $result;
+        }else {
+            return "Ta jadalnia nie posiada jeszcze potraw";
+        }
+    }
+    
+    public function options(){
+        $result = Response()->json($this->_service->getOptions());
+        return $result;
+    }
 
 }

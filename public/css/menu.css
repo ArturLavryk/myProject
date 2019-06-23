@@ -5,11 +5,14 @@
   font-size: 16px;
   border: none;
   cursor: pointer;
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 100%;
 }
 
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
-  background-color: #3e8e41;
+  background-color: greenyellow;
 }
 
 /* The search field */
@@ -31,16 +34,18 @@
 .dropdown {
   position: relative;
   display: inline-block;
+  width: 100%;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
-  position: absolute;
+  position: relative;
   background-color: #f6f6f6;
-  min-width: 230px;
+  min-width: 100%;
   border: 1px solid #ddd;
   z-index: 1;
+  margin-left: 10px;
 }
 
 /* Links inside the dropdown */
