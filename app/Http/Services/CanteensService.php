@@ -17,29 +17,24 @@ class CanteensService  {
 
     }
     
-    public function getMeal($id){
-        $mealId = CanteenMeals::where('id_canteen', $id)->get();
-        if(!empty($mealId)){
-            $num = 0;
-            foreach ($mealId as $m){
-                $meal[$num] = Meal::find($m->id_meals);
-                $num++;
+    public function getMeals($canteenId){
+        $meals = CanteenMeals::where('id_canteen', $canteenId)->get();
+        if(!empty($meals)){
+            $meal = [];
+            foreach ($meals as $m){
+                $meal[] = Meal::find($m->id_meals);
             }
             return $meal;
         } else {
             return null;    
         }
     }
-    public function meal(){
-        $meal = Meal::all();
-        return $meal;
-    }
 
-        public function getOptions(){
+    public function getOptions() {
         $options = Options::all();
-        if(!empty($options)){
+        if(!empty($options)) {
             return $options;
-        }else{
+        } else {
             return nullValue();
         }
     }

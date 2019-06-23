@@ -25,17 +25,14 @@ class CanteensController extends Controller {
         return $result;
     }
     
-    public function meals($canteenId = 0){
-        if($canteenId !=0){
-        $result = Response()->json($this->_service->getMeal($canteenId));
+    public function meals($id){
+        if(!empty($this->_service->getMeals($id))){
+            $result = Response()->json($this->_service->getMeals($id));
         } else {
-        $result = Response()->json($this->_service->meal());    
+            $result = Response()->json(['message' => 'Restauracja nie posada żadnej strawy'], 400);    
         }
-        if(!empty($result)){
-            return $result;
-        }else {
-            return "Ta jadalnia nie posiada jeszcze potraw";
-        }
+        
+        return $result;
     }
     
     public function options(){
