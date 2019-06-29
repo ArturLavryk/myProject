@@ -20,21 +20,30 @@ class CanteensController extends Controller {
     /**
      * GET METHOD
      */
-    public function canteens() {
-        $result = Response()->json($this->_service->getAll());
-        return $result;
+    public function canteens($id = 0) {
+        $result = $this->_service->getAll($id);               
+        if(isset($result)){
+        return response()->json($result);
+        }else{
+          return response()->json([
+                'message' => 'Ta jadalnia nie istnieje'
+            ], 401);  
+        }
     }
     
     public function meals($canteenId = 0){
-        if($canteenId !=0){
-        $result = Response()->json($this->_service->getMeal($canteenId));
+        if($canteenId != 0){
+            $result = $this->_service->getMeal($canteenId);
         } else {
-        $result = Response()->json($this->_service->meal());    
+            $result = $this->_service->meal();    
         }
-        if(!empty($result)){
-            return $result;
+        
+        if(isset($result)){
+            return response()->json($result);
         }else {
-            return "Ta jadalnia nie posiada jeszcze potraw";
+            return response()->json([
+                'message' => 'Ta jadalnia nie posiada jeszcze potraw'
+            ], 401);
         }
     }
     
@@ -43,18 +52,41 @@ class CanteensController extends Controller {
         return $result;
     }
     
-    public function order(Request $request){
+    public function box(Request $request){
         $order = new Order();
         $order->id_canteen = $request->id_canteen;
         $order->id_user = Auth::id();
         $order->time = $request->time;
+        $order->status = 1;
         $order->save();
         $odpowiedz = $this->_service->mealOrder($request->meal, $order->id);
         if(isset($request->options)){
             $this->_service->mealOptions($request->options, $order->id);
         }
-        if(!empty($odpowiedz)){
-            return $odpowiedz;
+        if(!isset($odpowiedz)){
+            return response()->json([
+                'order' => $order->id
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Zamówienie nie zrealizowano'
+            ], 401);
         }
+    }
+    
+    public function getBoxOrder($idUser){
+       $data = $this->_service->getBox($idUser);
+       if(isset($data)){
+            return response()->json($data);
+       }else{
+            return response()->json(['message' => 'Koszyk jest pusty.'],401); 
+       }
+    }
+    
+    public function orderSuccess($idOrder){
+        $order = Order::find($idOrder);
+        $order->status = 2;
+        $order->save();
+        return response()->json(['message' => 'Zatwierdzono'],200);
     }
 }
