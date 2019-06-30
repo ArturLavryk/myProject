@@ -22,11 +22,11 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/signup', 'Api\AuthController@signup');
 });
 
-Route::group(['prefix' => 'application'], function() {
+Route::group(['middleware' => 'auth:api', 'prefix' => 'application'], function() {
     Route::get('/canteens/{id?}', 'Api\CanteensController@canteens');
     Route::get('/meals/{id?}', 'Api\CanteensController@meals');
     Route::get('/options', 'Api\CanteensController@options');
-    Route::post('/box', 'Api\CanteensController@box');//Z≈Ço≈ºenie zam√≥wienia
+    Route::post('/box', 'Api\CanteensController@box');//Z≥oøenie zamÛwienia
     Route::get('/getBox/{id}', 'Api\CanteensController@getBoxOrder');//wszystko co jest w koszu
-    Route::get('/order/{id}', 'Api\CanteensController@orderSuccess');//Podtwierdzenie zam√≥wienia
+    Route::get('/order/{id}', 'Api\CanteensController@orderSuccess');//Podtwierdzenie zamÛwienia
 });
