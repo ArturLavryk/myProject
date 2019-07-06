@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'application'], function()
     Route::get('/canteens/{id?}', 'Api\CanteensController@canteens');
     Route::get('/meals/{id?}', 'Api\CanteensController@meals');
     Route::get('/options', 'Api\CanteensController@options');
-    Route::post('/box', 'Api\CanteensController@box');//Z³o¿enie zamówienia
+    Route::post('/box', 'Api\CanteensController@box');//Zlozenie zamowienia
     Route::get('/getBox/{id}', 'Api\CanteensController@getBoxOrder');//wszystko co jest w koszu
-    Route::get('/order/{id}', 'Api\CanteensController@orderSuccess');//Podtwierdzenie zamówienia
+    Route::get('/order/{id}', 'Api\CanteensController@orderSuccess');//Podtwierdzenie zamowienia
 });
