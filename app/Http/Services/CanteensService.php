@@ -9,7 +9,6 @@ use App\Options;
 use App\MealOrder;
 use App\OrderOptions;
 use App\Order;
-use App\CanteenMeals;
 
 class CanteensService  {
 
