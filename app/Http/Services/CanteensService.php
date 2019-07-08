@@ -9,6 +9,7 @@ use App\Options;
 use App\MealOrder;
 use App\OrderOptions;
 use App\Order;
+use Illuminate\Support\Facades\DB;
 
 class CanteensService  {
 
@@ -106,13 +107,16 @@ class CanteensService  {
         return $options;
     }
     
-    public function mealCanteen($id){
+    public function mealCanteen($id) {
         $ids = CanteenMeals::where('id_canteen', '=', $id)->get();
-        foreach ($ids as $idmeal){
-            $meal[] = Meal::find($idmeal->id_meal);
+        $meals = array();
+        
+        foreach ($ids as $idmeal) {
+            $meals[] = Meal::find($idmeal->id_meals);
         }
-        if(isset($meal)){
-            return $meal;
+        
+        if(isset($meals)){
+            return $meals;
         }
         return null;
         

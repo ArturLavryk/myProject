@@ -75,9 +75,9 @@ class CanteensController extends Controller {
     }
     
     public function getCanteenMeals($canteenId) {
-       $meal = $this->_service->mealCanteen($canteenId);
-       if(!empty($meal)){
-            return response()->json([$meal], 200);
+       $meals = $this->_service->mealCanteen($canteenId);
+       if(!empty($meals)){
+            return response()->json($meals, 200);
         } else {
             return response()->json(['message' => 'Restauracja jeszcze nie posiada straw'], 400);
         }
