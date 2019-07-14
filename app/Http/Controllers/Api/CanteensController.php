@@ -74,6 +74,15 @@ class CanteensController extends Controller {
         }
     }
     
+    public function getCanteenMeals($canteenId) {
+       $meals = $this->_service->mealCanteen($canteenId);
+       if(!empty($meals)){
+            return response()->json($meals, 200);
+        } else {
+            return response()->json(['message' => 'Restauracja jeszcze nie posiada straw'], 400);
+        }
+    }
+    
     public function getBoxOrder($idUser){
        $data = $this->_service->getBox($idUser);
        if(isset($data)){
