@@ -21,6 +21,7 @@
                             <th scope="col">{{ __('Post code') }}</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,6 +35,7 @@
                             <td>{{ $canteens->city}}</td>
                             <td>{{ $canteens->post_code}}</td>
                             <td><button class="btn btn-dark pcode" ctn="{{$canteens->id}}">Edit</button></td>
+                            <td><a href="{{route("myCanteens", ['id' => $canteens->id])}}"><button class="btn btn-dark pcode" ctn="{{$canteens->id}}">Add meal</button></a></td>
                             <td><button class="btn btn-danger del" id="del" onclick="deletectn(this,{{$canteens->id}})">Delete</button></td>
                         </tr>
                    

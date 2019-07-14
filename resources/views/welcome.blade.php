@@ -70,10 +70,10 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">Logowanie</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">Rejestracja</a>
                         @endif
                     @endauth
                 </div>
@@ -85,13 +85,13 @@
                 </div>
 
                 <div class="links">
-                    <a href="add">Add Canteen</a>
-                    <a href="show">Show canteens</a>
-                    <a href="meal">Add meal</a>
-                    <a href="storemeal">Store meal</a>
-                    <a href="ingredient">Add ingredient</a>
-                    <a href="storeingredient">Show ingredients</a>
-                    <a href="selectCanteen">Order</a>
+                    <a href="add">Dodaj jadalnie</a>
+                    <a href="show">Pokaż jadalnie</a>
+                    <a href="meal">Dodaj potrawy</a>
+                    <a href="storemeal">Wszystkie potrawy</a>
+                    <a href="ingredient">Dodaj składniki</a>
+                    <a href="storeingredient">Pokaż składniki</a>
+                    <a href="selectCanteen">Zamuwienie</a>
                 </div>
             </div>
         </div>

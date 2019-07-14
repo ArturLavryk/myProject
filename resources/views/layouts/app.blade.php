@@ -49,12 +49,12 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Logowanie') }}</a>
                             </li>
         
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Rejestracja') }}</a>
                                 </li>
                             @endif
                         @else
@@ -75,30 +75,30 @@
                                     </form>
                                                         @if (Auth::id())
                             <li class="nav-item">
-                             <a class="nav-link" href="{{ route('editUser')}}">{{ __('Edit') }}</a>
+                             <a class="nav-link" href="{{ route('editUser')}}">{{ __('Edytuj użytkownika') }}</a>
                             </li>
                             <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('selectCanteen') }}">{{__('Order')}}</a>
+                                    <a class="nav-link" href="{{ route('selectCanteen') }}">{{__('Zamuwienie')}}</a>
                             </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('box') }}">{{__('Box')}}</a>
+                                    <a class="nav-link" href="{{ route('box') }}">{{__('Kosz')}}</a>
                             </li>
                             
                             <div class="dropdown">
-                              <button class="btn border-0 btn-light dropdown-toggle" type="button" data-toggle="dropdown">Canteen
+                              <button class="btn border-0 btn-light dropdown-toggle" type="button" data-toggle="dropdown">Jadalni
                               <span class="caret"></span></button>
                               <ul class="dropdown-menu">
-                                  <li><a class="nav-link" href="add">Add canteen</a></li>
-                                  <li><a class="nav-link" href="show">Show canteen</a></li>
+                                  <li><a class="nav-link" href="add">Dodaj jadalnie</a></li>
+                                  <li><a class="nav-link" href="show">Pokaż jadalni</a></li>
                               </ul>
 
                             </div>
                                 <div class="dropdown">
-                                <button class="btn border-0 btn-light dropdown-toggle" type="button" data-toggle="dropdown">Meal
+                                <button class="btn border-0 btn-light dropdown-toggle" type="button" data-toggle="dropdown">Potrawy
                                     <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="nav-link" href="meal">Add meal</a></li>
-                                    <li><a class="nav-link" href="storemeal">Show meal</a></li>
+                                    <li><a class="nav-link" href="meal">Dodaj potrawe</a></li>
+                                    <li><a class="nav-link" href="storemeal">Pokaż potrawy</a></li>
                                 </ul>
                             </div>
                             @endif
