@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\CanteensService;
 use App\Order;
 use Illuminate\Support\Facades\Auth;
+use App\MealOrder;
 
 class CanteensController extends Controller {
     
@@ -53,25 +54,50 @@ class CanteensController extends Controller {
     }
     
     public function box(Request $request){
-        $order = new Order();
-        $order->id_canteen = $request->id_canteen;
-        $order->id_user = Auth::id();
-        $order->time = $request->time;
-        $order->status = 1;
-        $order->save();
-        $odpowiedz = $this->_service->mealOrder($request->meal, $order->id);
-        if(isset($request->options)){
-            $this->_service->mealOptions($request->options, $order->id);
-        }
-        if(!isset($odpowiedz)){
-            return response()->json([
-                'order' => $order->id
-            ], 200);
+        if($request->id_canteen && $request->id_user){
+            $user = $request->id_user;
+            $canteen = $request->id_canteen;
+            $order = new Order();
+            $mealOrd = new MealOrder();
+            if($ord = $order->where('id_user', $user)->where('status', 1)->where('id_canteen', $canteen)->get()){
+                //var_dump($ord[0]->id);exit;
+                $id_ord = $ord[0]->id;
+            } else {
+                $order->id_canteen = $canteen;
+                $order->id_user = $user;
+                $order->status = 1;
+                $order->save();
+                $id_ord = $order->id;
+            }
+            $mealOrd->id_order = $id_ord;
+            $mealOrd->id_meal = $request->id_meal;
+            $mealOrd->save();
+            if($mealOrd->id){
+                return response()->json(['message' => "success"], 200);
+            } else {
+                return response()->json(['message' => "false"], 400);
+            }         
         } else {
-            return response()->json([
-                'message' => 'Zamówienie nie zrealizowano'
-            ], 401);
+             return response()->json(['message' => "Nie prawidłowe parametry postu"], 400);
         }
+//        $order = new Order();
+//        $order->id_canteen = $request->id_canteen;
+//        $order->id_user = Auth::id();
+//        $order->status = 1;
+//        $order->save();
+//        $odpowiedz = $this->_service->mealOrder($request->meal, $order->id);
+//        if(isset($request->options)){
+//            $this->_service->mealOptions($request->options, $order->id);
+//        }
+//        if(!isset($odpowiedz)){
+//            return response()->json([
+//                'order' => $order->id
+//            ], 200);
+//        } else {
+//            return response()->json([
+//                'message' => 'Nie udało się dodać zamówienie do koszyka'
+//            ], 400);
+//        }
     }
     
     public function getCanteenMeals($canteenId) {
@@ -97,5 +123,16 @@ class CanteensController extends Controller {
         $order->status = 2;
         $order->save();
         return response()->json(['message' => 'Zatwierdzono'],200);
+    }
+    
+    public function deleteFromBox(Request $request){
+        $idOrder = $request->id_order;
+        $idMeal = $request->id_meal;
+        $mealOrd = new MealOrder();
+        if($mealOrd->where('id_order', $idOrder)->where('id_meal', $idMeal)->delete()){
+            return response()->json(['message' => "success"], 200);
+        } else {
+            return response()->json(['message' => "false"], 400);
+        }
     }
 }

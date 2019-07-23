@@ -23,11 +23,12 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth:api', 'prefix' => 'application'], function() {
-    Route::get('/canteens/{id?}', 'Api\CanteensController@canteens');
-    Route::get('/meals/{id?}', 'Api\CanteensController@meals');
-    Route::get('/options', 'Api\CanteensController@options');
+    Route::get('/canteens/{id?}', 'Api\CanteensController@canteens');//Zwraca liste jadalni wszystkich lu jeśli dać jako parametr w url id jadalni to zwruci konkretną potrawę
+    Route::get('/meals/{id?}', 'Api\CanteensController@meals');// Zwraca liste potraw wszystkich lu jeśli dać jako parametr w url id potrawy to zwruci konkretną potrawę
+    Route::get('/options', 'Api\CanteensController@options');//Zwraca liste opcij wszystkich
     Route::post('/box', 'Api\CanteensController@box');//Zlozenie zamowienia
-    Route::get('/getBox/{id}', 'Api\CanteensController@getBoxOrder');//wszystko co jest w koszu
-    Route::get('/order/{id}', 'Api\CanteensController@orderSuccess');//Podtwierdzenie zamowienia
-    Route::get('/canteen/{id}/meals', 'Api\CanteensController@getCanteenMeals');
+    Route::get('/getBox/{id}', 'Api\CanteensController@getBoxOrder');//wszystko co jest w koszu parametr id_user
+    Route::get('/order/{id}', 'Api\CanteensController@orderSuccess');//Podtwierdzenie zamowienia jako parametr wysłać id_order
+    Route::get('/canteen/{id}/meals', 'Api\CanteensController@getCanteenMeals');//Zwraca liste potraw w konkretnej jadalni jako parametr w url wpisz id jadalni
+    Route::delete('/delete/meal/box', 'Api\CanteensController@deleteFromBox'); //Usunięcie potrawy z kosza jako parametry trzeba id_order, id_meal
 });

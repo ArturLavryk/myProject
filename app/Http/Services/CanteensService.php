@@ -34,6 +34,7 @@ class CanteensService  {
         if(isset($mealId[0])){
             foreach ($mealId as $m){
                 $meal[] = Meal::find($m->id_meals);
+                $meal['id_canteen'] = $id;
             }
             return $meal;
         } else {
@@ -44,10 +45,12 @@ class CanteensService  {
     
     public function meal(){
         $meal = Meal::all();
+        
         return $meal;
     }
 
     public function getOptions(){
+            $optOrd->save();
         $options = Options::all();
         if(!empty($options)){
             return $options;
@@ -73,7 +76,6 @@ class CanteensService  {
         foreach ($options as $opt){
             $optOrd->id_options = $opt->id_options;
             $optOrd->id_order = $opt->id_order;
-            $optOrd->save();
         }
     }
     
@@ -81,7 +83,7 @@ class CanteensService  {
         $order = Order::where('id_user','=', $user, 'and')->where('status','=', 1)->get();
         foreach ($order as $simple){
         $data['meals'] = $this->boxMeals($simple->id);
-        $data['options'] = $this->boxOptions($simple->id);
+        //$data['options'] = $this->boxOptions($simple->id);
         $data['order'] = $simple->id;
         }
         if(isset($data)){
