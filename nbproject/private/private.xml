@@ -3,12 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/myProject/routes/web.php</file>
-            <file>file:/C:/xampp/htdocs/myProject/app/Http/Services/CanteensService.php</file>
-            <file>file:/C:/xampp/htdocs/myProject/app/Http/Controllers/Api/AuthController.php</file>
-            <file>file:/C:/xampp/htdocs/myProject/routes/api.php</file>
-            <file>file:/C:/xampp/htdocs/myProject/app/Http/Controllers/Api/CanteensController.php</file>
-            <file>file:/C:/xampp/htdocs/myProject/app/Http/Controllers/OrderController.php</file>
+            <file>file:/D:/DevEnv/xampp/htdocs/myProject/app/Http/Services/CanteensService.php</file>
+            <file>file:/D:/DevEnv/xampp/htdocs/myProject/app/Http/Controllers/CanteenController.php</file>
+            <file>file:/D:/DevEnv/xampp/htdocs/myProject/app/Http/Controllers/Api/CanteensController.php</file>
         </group>
     </open-files>
 </project-private>

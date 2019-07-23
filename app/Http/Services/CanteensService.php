@@ -79,12 +79,14 @@ class CanteensService  {
         }
     }
     
-    public function getBox($user){
-        $order = Order::where('id_user','=', $user, 'and')->where('status','=', 1)->get();
+    public function getBox($user, $id_canteen) {
+        $order = Order::where('id_user','=', $user)->where('id_canteen', '=', $id_canteen)->where('status','=', 1)->get();
+        $num = 0;
         foreach ($order as $simple){
-        $data['meals'] = $this->boxMeals($simple->id);
-        //$data['options'] = $this->boxOptions($simple->id);
-        $data['order'] = $simple->id;
+            $data['meals'] = $this->boxMeals($simple->id);
+            //$data['options'] = $this->boxOptions($simple->id);
+            $data['order'] = $simple->id;
+
         }
         if(isset($data)){
             return $data;
@@ -112,9 +114,11 @@ class CanteensService  {
     public function mealCanteen($id) {
         $ids = CanteenMeals::where('id_canteen', '=', $id)->get();
         $meals = array();
-        
+        $num =0;
         foreach ($ids as $idmeal) {
             $meals[] = Meal::find($idmeal->id_meals);
+            $meals[$num]['id_canteen'] = $id;
+            $num++;
         }
         
         if(isset($meals)){
@@ -122,6 +126,16 @@ class CanteensService  {
         }
         return null;
         
+    }
+    
+    public function isOrderExist($id_canteen, $user_id) {
+        $order = Order::where('id_user', $user_id)->where('status', 1)->where('id_canteen', $id_canteen)->get();
+        
+        if($order) {
+            return $order;
+        } else {
+            return null;
+        }
     }
 
 }

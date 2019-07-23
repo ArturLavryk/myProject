@@ -54,15 +54,15 @@ class CanteensController extends Controller {
     }
     
     public function box(Request $request){
-        if($request->id_canteen && $request->id_user){
-            $user = $request->id_user;
+        if($request->id_canteen){
+            $user = Auth::id();
             $canteen = $request->id_canteen;
-            $order = new Order();
             $mealOrd = new MealOrder();
-            if($ord = $order->where('id_user', $user)->where('status', 1)->where('id_canteen', $canteen)->get()){
-                //var_dump($ord[0]->id);exit;
-                $id_ord = $ord[0]->id;
+            $order = $this->_service->isOrderExist($canteen, $user);
+            if(isset($order[0]->id)) {
+                $id_ord = $order[0]->id;
             } else {
+                $order = new Order();
                 $order->id_canteen = $canteen;
                 $order->id_user = $user;
                 $order->status = 1;
@@ -109,8 +109,9 @@ class CanteensController extends Controller {
         }
     }
     
-    public function getBoxOrder($idUser){
-       $data = $this->_service->getBox($idUser);
+    public function getBoxOrder($canteenId){
+       $idUser = Auth::id();
+       $data = $this->_service->getBox($idUser, $canteenId);
        if(isset($data)){
             return response()->json($data);
        }else{
