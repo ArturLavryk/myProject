@@ -115,7 +115,7 @@ class CanteensController extends Controller {
        if(isset($data)){
             return response()->json($data);
        }else{
-            return response()->json(['message' => 'Koszyk jest pusty.'],401); 
+            return response()->json(['message' => 'Koszyk jest pusty.'],400); 
        }
     }
     
