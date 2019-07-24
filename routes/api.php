@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'application'], function()
     Route::get('/options', 'Api\CanteensController@options');//Zwraca liste opcij wszystkich
     Route::post('/box', 'Api\CanteensController@box');//Zlozenie zamowienia
     Route::get('/getBox/{id}', 'Api\CanteensController@getBoxOrder');//wszystko co jest w koszu 
-    Route::get('/order/{id}', 'Api\CanteensController@orderSuccess');//Podtwierdzenie zamowienia jako parametr wysłać id_order
+    Route::post('/order', 'Api\CanteensController@orderSuccess');//Podtwierdzenie zamowienia jako parametr wysłać id_order
     Route::get('/canteen/{id}/meals', 'Api\CanteensController@getCanteenMeals');//Zwraca liste potraw w konkretnej jadalni jako parametr w url wpisz id jadalni
     Route::delete('/delete/meal/box', 'Api\CanteensController@deleteFromBox'); //Usunięcie potrawy z kosza jako parametry trzeba id_order, id_meal
 });

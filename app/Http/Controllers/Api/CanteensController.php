@@ -119,7 +119,8 @@ class CanteensController extends Controller {
        }
     }
     
-    public function orderSuccess($idOrder){
+    public function orderSuccess(Request $request){
+		$idOrder = $request->id_order;
         $order = Order::find($idOrder);
         $order->status = 2;
         $order->save();
